@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { useCart } from '../../hooks/useCart';
 import { useWishlist } from '../../hooks/useWishlist';
-import NeedleAccent from '../ui/NeedleAccent';
 import styles from './Navbar.module.css';
 
 interface SectionLink {
@@ -195,7 +194,6 @@ export default function Navbar() {
           </Link>
 
           <Link to="/" className={styles.brand}>
-            <NeedleAccent className={styles.brandEmblem} />
             <span className={styles.brandName}>Teotex</span>
           </Link>
         </div>

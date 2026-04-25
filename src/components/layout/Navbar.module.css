@@ -4,7 +4,7 @@
   z-index: 100;
   height: var(--navbar-height);
   background-color: var(--color-bg-white);
-  border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 6px 16px -4px rgba(0, 0, 0, 0.12);
 }
 
 .navbarInner {
@@ -162,13 +162,6 @@
   font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-text-primary);
-}
-
-.brandEmblem {
-  width: 36px;
-  height: 36px;
-  opacity: 0.85;
-  flex-shrink: 0;
 }
 
 /* Hamburger menu button - hidden on desktop */

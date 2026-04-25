@@ -19,8 +19,9 @@ Site de prezentare și e-commerce pentru **TeoTex**, un atelier românesc cu pes
 - **Listă de favorite** la `/#/favorite` — grid de produse, sincronizat cu inima din cardurile de produs.
 - **Iconițe coș + favorite în navbar** cu badge-uri care afișează numărul de produse, identice ca stil.
 - **Buton flotant WhatsApp** vizibil pe orice pagină (placeholder `wa.me/40000000000` — se înlocuiește în `src/components/ui/WhatsAppButton.tsx` și `src/pages/ContactPage.tsx` cu numărul real).
-- **Scroll la top automat** la orice schimbare de rută (pathname sau query string), implementat în `src/components/ui/ScrollToTop.tsx`.
-- **Emblema brand-ului** (ac cu ață, gold) afișată lângă textul "Teotex" în navbar pe toate paginile.
+- **Scroll la top automat** la orice navigare, inclusiv click pe Link către pagina curentă (depinde de `location.key`), implementat în `src/components/ui/ScrollToTop.tsx`.
+- **Navbar sticky cu shadow soft** care plutește deasupra paginii, separat vizual de panoul de hero.
+- **Hero extins** pe pagina principală — panoul crem (`--color-bg-primary`) ocupă ~88vh pe desktop / 65vh pe mobil, ca să domine prima vizualizare.
 - **Routing pe URL share-abil** — secțiunea curentă se păstrează în query (`?sectiune=femei` etc.), deci link-urile pot fi salvate / trimise.
 
 ## Rute
@@ -89,7 +90,6 @@ npm run build
 După build, `dist/` conține:
 
 - `index.html` — un singur fișier cu tot JavaScript-ul și CSS-ul inline (prin `vite-plugin-singlefile`)
-- `favicon.svg` — pictograma site-ului
 - `assets/images/` — imagini de produs
 
 Pentru a vizualiza site-ul fără un server web, se deschide `dist/index.html` direct în browser. Pentru hostare, se urcă conținutul folderului `dist/` pe orice host static (Vercel, Netlify, GitHub Pages, hosting clasic etc.).
