@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom';
 import Container from '../components/ui/Container';
 import NeedleAccent from '../components/ui/NeedleAccent';
+import PageAccents from '../components/ui/PageAccents';
 import FeaturedProducts from '../components/home/FeaturedProducts';
 import styles from './HomePage.module.css';
 
 function HomePage() {
   return (
     <div className={styles.page}>
+      <PageAccents variant="home" />
+      <div className={styles.pageContent}>
       <section className={styles.hero}>
         <div className={styles.needleTopLeft}>
           <NeedleAccent className={styles.needleTopLeftSvg} />
@@ -32,6 +35,7 @@ function HomePage() {
       </div>
 
       <FeaturedProducts />
+      </div>
     </div>
   );
 }

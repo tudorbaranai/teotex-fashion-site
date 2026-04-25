@@ -4,6 +4,11 @@
   overflow: hidden;
 }
 
+.pageContent {
+  position: relative;
+  z-index: 1;
+}
+
 .cornerNeedle {
   position: absolute;
   bottom: var(--space-xl);

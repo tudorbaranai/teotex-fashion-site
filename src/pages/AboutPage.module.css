@@ -1,5 +1,12 @@
 .page {
   width: 100%;
+  position: relative;
+  overflow-x: clip;
+}
+
+.pageContent {
+  position: relative;
+  z-index: 1;
 }
 
 .storySection {

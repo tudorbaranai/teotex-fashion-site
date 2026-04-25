@@ -1,0 +1,27 @@
+.layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.accent {
+  position: absolute;
+  pointer-events: none;
+  display: block;
+}
+
+/* Ensure the inner NeedleAccent SVG fills the wrapper so the wrapper's
+   inline width/height drives the rendered accent size. */
+.accent > svg {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .mobileHidden {
+    display: none;
+  }
+}

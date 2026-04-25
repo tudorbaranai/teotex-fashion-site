@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Container from '../components/ui/Container';
+import PageAccents from '../components/ui/PageAccents';
 import ProductGrid from '../components/product/ProductGrid';
 import { useWishlist } from '../hooks/useWishlist';
 import { products } from '../data/products';
@@ -22,6 +23,8 @@ export default function FavoritePage() {
 
   return (
     <section className={styles.page}>
+      <PageAccents variant="favorite" />
+      <div className={styles.pageContent}>
       <Container>
         <div className={styles.header}>
           <h1 className={styles.title}>Favoritele Tale</h1>
@@ -40,6 +43,7 @@ export default function FavoritePage() {
           <ProductGrid products={favoriteProducts} />
         )}
       </Container>
+      </div>
     </section>
   );
 }
