@@ -7,18 +7,6 @@ import styles from './HomePage.module.css';
 function HomePage() {
   return (
     <div className={styles.page}>
-      <section className={styles.trustBar}>
-        <Container>
-          <div className={styles.trustItems}>
-            <span className={styles.trustItem}>Livrare Rapida</span>
-            <span className={styles.trustSeparator}>|</span>
-            <span className={styles.trustItem}>Retururi 30 Zile</span>
-            <span className={styles.trustSeparator}>|</span>
-            <span className={styles.trustItem}>Plata Securizata</span>
-          </div>
-        </Container>
-      </section>
-
       <section className={styles.hero}>
         <Container>
           <div className={styles.heroContent}>

@@ -2,32 +2,6 @@
   width: 100%;
 }
 
-.trustBar {
-  background-color: var(--color-text-primary);
-  padding: var(--space-sm) 0;
-}
-
-.trustItems {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: var(--space-md);
-  flex-wrap: wrap;
-}
-
-.trustItem {
-  color: var(--color-bg-white);
-  font-size: var(--font-size-xs);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: var(--font-weight-medium);
-}
-
-.trustSeparator {
-  color: var(--color-accent-gold);
-  font-size: var(--font-size-xs);
-}
-
 .hero {
   position: relative;
   background-color: var(--color-bg-primary);
