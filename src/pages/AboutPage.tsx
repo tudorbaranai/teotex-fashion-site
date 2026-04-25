@@ -1,10 +1,13 @@
 import Container from '../components/ui/Container';
 import NeedleAccent from '../components/ui/NeedleAccent';
+import PageAccents from '../components/ui/PageAccents';
 import styles from './AboutPage.module.css';
 
 function AboutPage() {
   return (
     <div className={styles.page}>
+      <PageAccents variant="about" />
+      <div className={styles.pageContent}>
       <section className={styles.storySection}>
         <Container>
           <div className={styles.storyGrid}>
@@ -77,6 +80,7 @@ function AboutPage() {
           </div>
         </Container>
       </section>
+      </div>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Container from '../components/ui/Container';
 import NeedleAccent from '../components/ui/NeedleAccent';
+import PageAccents from '../components/ui/PageAccents';
 import { useCart } from '../hooks/useCart';
 import { products } from '../data/products';
 import type { Product } from '../types/product';
@@ -45,6 +46,8 @@ export default function CartPage() {
 
   return (
     <section className={styles.page}>
+      <PageAccents variant="cart" />
+      <div className={styles.pageContent}>
       <Container>
         <div className={styles.header}>
           <h1 className={styles.title}>Cosul Tau</h1>
@@ -142,6 +145,7 @@ export default function CartPage() {
           </div>
         )}
       </Container>
+      </div>
     </section>
   );
 }
