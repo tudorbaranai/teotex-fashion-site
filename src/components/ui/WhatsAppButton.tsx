@@ -3,8 +3,7 @@ import styles from './WhatsAppButton.module.css';
 export default function WhatsAppButton() {
   return (
     <a
-      // TODO: replace 40000000000 with the real number
-      href="https://wa.me/40000000000"
+      href="https://wa.me/40700000000"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contacteaza-ne pe WhatsApp"

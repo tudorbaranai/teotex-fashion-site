@@ -45,8 +45,8 @@
   --space-4xl: 96px;
 
   /* Layout */
-  --max-width: 1280px;
-  --navbar-height: 80px;
+  --max-width: none;
+  --navbar-height: 60px;
 
   /* Borders */
   --radius-sm: 4px;

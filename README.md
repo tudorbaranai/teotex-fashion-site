@@ -15,13 +15,15 @@ Site de prezentare și e-commerce pentru **TeoTex**, un atelier românesc cu pes
 - **Catalog împărțit în 5 secțiuni** (Femei, Bărbați, Casă, Absolvire, Nunți), cu sub-categorii (rochie, bluză, fustă, cămașă, costum, pijama, perdea, lenjerie, robă, tocă, eșarfă, rochie mireasă, costum mire).
 - **Navigare cu dropdown** pentru "Produse" în navbar (deschidere doar la click, închidere pe Esc / outside-click / selecție); pe mobil dropdown-ul devine listă plată în meniul hamburger.
 - **Filtrare avansată în sidebar pe stânga** pe pagina Produse — casete pătrate cu filtre pentru secțiune, sub-categorie, preț (min/max), sortare (recomandate / preț ↑↓ / cele mai noi) și disponibilitate (doar produse în stoc). Pe mobil filtrele se ascund în spatele unui buton `Filtre (N)`.
-- **Coș de cumpărături** la `/#/cos` — listă produse cu controale de cantitate (`+`/`−`), subtotal pe rând, ștergere item, sumar comandă lipicios, plus stare goală cu CTA.
+- **Coș de cumpărături** la `/#/cos` — listă produse cu controale de cantitate (`+`/`−`), total pe rând, ștergere item, sumar comandă lipicios cu Total + două CTA-uri (WhatsApp cu mesaj pre-completat conținând lista + cantități + total, și `tel:` pentru apel direct), plus stare goală cu CTA. Comenzile se finalizează exclusiv prin WhatsApp / telefon — nu există plată online sau livrare automată.
 - **Listă de favorite** la `/#/favorite` — grid de produse, sincronizat cu inima din cardurile de produs.
 - **Iconițe coș + favorite în navbar** cu badge-uri care afișează numărul de produse, identice ca stil.
-- **Buton flotant WhatsApp** vizibil pe orice pagină (placeholder `wa.me/40000000000` — se înlocuiește în `src/components/ui/WhatsAppButton.tsx` și `src/pages/ContactPage.tsx` cu numărul real).
+- **Buton flotant WhatsApp** vizibil pe orice pagină, conectat la numărul brand-ului (`+40 700 000 000`).
+- **Harta Google Maps** integrată pe pagina Contact (iframe cu `output=embed`, fără API key) — caută "TeoTex Fashion SRL, Stroiești".
 - **Scroll la top automat** la orice navigare, inclusiv click pe Link către pagina curentă (depinde de `location.key`), implementat în `src/components/ui/ScrollToTop.tsx`.
-- **Navbar sticky cu shadow soft** care plutește deasupra paginii, separat vizual de panoul de hero.
+- **Navbar sticky compact** (`--navbar-height: 60px`) cu shadow soft, care plutește deasupra paginii.
 - **Hero extins** pe pagina principală — panoul crem (`--color-bg-primary`) ocupă ~88vh pe desktop / 65vh pe mobil, ca să domine prima vizualizare.
+- **Layout edge-to-edge complet adaptiv** — navbar, `Container` și `Footer` folosesc același `padding: clamp(16px, 2vw, 32px)`, deci conținutul se aliniază la marginile ecranului pe orice dimensiune și la orice zoom. `--max-width: none` în `tokens.css` lasă layout-ul să folosească toată lățimea disponibilă.
 - **Routing pe URL share-abil** — secțiunea curentă se păstrează în query (`?sectiune=femei` etc.), deci link-urile pot fi salvate / trimise.
 
 ## Rute
@@ -36,7 +38,7 @@ Site de prezentare și e-commerce pentru **TeoTex**, un atelier românesc cu pes
 | `/produse?sectiune=absolvire` | Articole de absolvire |
 | `/produse?sectiune=nunti` | Articole de nuntă |
 | `/despre-noi` | Despre noi |
-| `/contact` | Contact (formular + date + WhatsApp) |
+| `/contact` | Contact (formular + date + WhatsApp + hartă Google Maps) |
 | `/cos` | Coșul de cumpărături |
 | `/favorite` | Lista de favorite |
 
@@ -50,9 +52,9 @@ src/
 ├── main.tsx                      # entry point
 ├── components/
 │   ├── home/                     # secțiuni de pe pagina principală (FeaturedProducts etc.)
-│   ├── layout/                   # Navbar (cu dropdown + emblema), Footer, Layout
+│   ├── layout/                   # Navbar (cu dropdown), Footer, Layout
 │   ├── product/                  # ProductCard, ProductFilter (sidebar), ProductGrid
-│   └── ui/                       # Button, Container, NeedleAccent, WhatsAppButton, ScrollToTop, ...
+│   └── ui/                       # Button, Container, WhatsAppButton, ScrollToTop, ...
 ├── context/                      # CartContext, WishlistContext (state global, in-memory)
 ├── data/products.ts              # catalogul static de produse
 ├── hooks/                        # useCart, useWishlist
@@ -101,14 +103,15 @@ Pentru a vizualiza site-ul fără un server web, se deschide `dist/index.html` d
 - **Produse:** `src/data/products.ts`. Fiecare produs are `section` (`FEMEI` / `BARBATI` / `CASA` / `ABSOLVIRE` / `NUNTI`) și `category` (sub-tipul). Tipurile sunt definite în `src/types/product.ts`.
 - **Imagini produse:** se pun în `public/assets/images/` și se referențiază relativ ca `assets/images/<nume-fisier>` în `products.ts`.
 - **Culori, tipografie, spațieri:** variabilele de design sunt centralizate în `src/styles/tokens.css`.
-- **Date de contact:** `src/pages/ContactPage.tsx` (email, telefon, adresă, program, link WhatsApp).
-- **Număr de telefon WhatsApp:** se înlocuiește placeholder-ul `40000000000` în `src/components/ui/WhatsAppButton.tsx` și `src/pages/ContactPage.tsx` cu numărul real (caută `// TODO`).
+- **Date de contact:** `src/pages/ContactPage.tsx` (email, telefon, adresă, program, link WhatsApp, query pentru harta Google Maps).
+- **Număr de telefon / WhatsApp:** numărul brand-ului (`40700000000`) e folosit în trei locuri — `src/components/ui/WhatsAppButton.tsx` (buton flotant), `src/pages/ContactPage.tsx` (telefon + WhatsApp în card-ul de info) și `src/pages/CartPage.tsx` (constantele `WHATSAPP_NUMBER` / `PHONE_NUMBER` / `PHONE_DISPLAY`). Dacă se schimbă, se actualizează în toate trei.
 - **Texte despre brand:** `src/pages/AboutPage.tsx`.
 
 ## Limitări curente (de avut în vedere)
 
-- Catalogul, coșul și lista de favorite sunt **doar pe client** — nu există backend, persistență între sesiuni sau plată reală. Butonul "Finalizeaza Comanda" afișează doar un mesaj de demo.
-- Imaginile de produs sunt placeholder SVG pentru toate cele 31 de produse. De înlocuit cu fotografii reale înainte de lansare.
+- Catalogul, coșul și lista de favorite sunt **doar pe client** — nu există backend sau persistență între sesiuni. Asta e prin design: comenzile se finalizează prin WhatsApp / telefon, nu prin checkout online.
+- **Formularul de Contact e cosmetic** — `handleSubmit` doar afișează un mesaj de succes, nu trimite efectiv mesajul nicăieri. Următorul pas (în lucru): redirect pe WhatsApp sau email-relay via FormSubmit / Web3Forms.
+- Imaginile de produs sunt placeholder SVG. De înlocuit cu fotografii reale înainte de lansare.
 - Nu există încă pagini dedicate de produs (PDP) — cardul nu navighează la un detaliu separat.
 - Nu există pagini legale (Termeni, Retur, GDPR, ANPC SAL, SOL) — necesare pentru e-commerce real în România.
 

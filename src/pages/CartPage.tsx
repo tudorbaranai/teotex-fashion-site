@@ -7,11 +7,9 @@ import styles from './CartPage.module.css';
 
 const formatPrice = (n: number) => `${n.toFixed(2)} RON`;
 
-// TODO: replace 40000000000 with the real WhatsApp number
-const WHATSAPP_NUMBER = '40000000000';
-// TODO: confirm the real phone number (mirrors ContactPage)
-const PHONE_NUMBER = '074086771';
-const PHONE_DISPLAY = '0740 86 771';
+const WHATSAPP_NUMBER = '40700000000';
+const PHONE_NUMBER = '+40700000000';
+const PHONE_DISPLAY = '0700 000 000';
 
 interface ResolvedItem {
   product: Product;
@@ -131,11 +129,6 @@ export default function CartPage() {
 
             <aside className={styles.summary}>
               <h2 className={styles.summaryTitle}>Sumar Comanda</h2>
-              <div className={styles.summaryRow}>
-                <span>Subtotal</span>
-                <span>{formatPrice(subtotal)}</span>
-              </div>
-              <hr className={styles.summaryDivider} />
               <div className={styles.summaryTotal}>
                 <span>Total</span>
                 <span>{formatPrice(subtotal)}</span>
