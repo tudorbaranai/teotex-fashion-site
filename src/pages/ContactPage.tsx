@@ -116,7 +116,7 @@ function ContactPage() {
                 </svg>
                 <div>
                   <span className={styles.infoLabel}>Telefon</span>
-                  <span className={styles.infoValue}>0740 86 771</span>
+                  <a href="tel:+40740486771" className={styles.infoValue}>0740 486 771</a>
                 </div>
               </div>
 
@@ -129,14 +129,13 @@ function ContactPage() {
                 </svg>
                 <div>
                   <span className={styles.infoLabel}>WhatsApp</span>
-                  {/* TODO: replace 40000000000 with the real number */}
                   <a
-                    href="https://wa.me/40000000000"
+                    href="https://wa.me/40740486771"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={styles.infoValue}
                   >
-                    +40 000 000 000
+                    +40 740 486 771
                   </a>
                 </div>
               </div>
@@ -164,8 +163,15 @@ function ContactPage() {
               </div>
             </div>
 
-            <div className={styles.mapPlaceholder}>
-              <span>Harta Google Maps</span>
+            <div className={styles.mapWrapper}>
+              <iframe
+                className={styles.mapFrame}
+                src="https://www.google.com/maps?q=TeoTex+Fashion+SRL,+727500+Stroiesti&output=embed"
+                title="Harta TeoTex Fashion SRL — Stroiesti"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
             </div>
           </div>
         </div>
