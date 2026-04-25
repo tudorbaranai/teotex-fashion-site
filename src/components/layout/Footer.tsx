@@ -26,8 +26,6 @@ export default function Footer() {
           <h4 className={styles.columnTitle}>Informatii</h4>
           <div className={styles.linkList}>
             <Link to="/despre-noi" className={styles.footerLink}>Despre Noi</Link>
-            <Link to="/livrare" className={styles.footerLink}>Livrare</Link>
-            <Link to="/retururi" className={styles.footerLink}>Retururi</Link>
             <Link to="/contact" className={styles.footerLink}>Contact</Link>
           </div>
         </div>
