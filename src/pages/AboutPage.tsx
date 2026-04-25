@@ -1,21 +1,14 @@
 import Container from '../components/ui/Container';
-import NeedleAccent from '../components/ui/NeedleAccent';
-import PageAccents from '../components/ui/PageAccents';
 import styles from './AboutPage.module.css';
 
 function AboutPage() {
   return (
     <div className={styles.page}>
-      <PageAccents variant="about" />
-      <div className={styles.pageContent}>
       <section className={styles.storySection}>
         <Container>
           <div className={styles.storyGrid}>
             <div className={styles.storyContent}>
-              <div className={styles.titleRow}>
-                <h1 className={styles.sectionTitle}>Povestea Noastra</h1>
-                <NeedleAccent className={styles.titleNeedle} />
-              </div>
+              <h1 className={styles.sectionTitle}>Povestea Noastra</h1>
               <div className={styles.divider} />
               <p className={styles.text}>
                 TeoTex s-a nascut din pasiunea pentru moda si dorinta de a oferi absolventilor romani
@@ -80,7 +73,6 @@ function AboutPage() {
           </div>
         </Container>
       </section>
-      </div>
     </div>
   );
 }

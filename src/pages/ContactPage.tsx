@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import Container from '../components/ui/Container';
 import Button from '../components/ui/Button';
-import NeedleAccent from '../components/ui/NeedleAccent';
-import PageAccents from '../components/ui/PageAccents';
 import styles from './ContactPage.module.css';
 
 function ContactPage() {
@@ -26,11 +24,6 @@ function ContactPage() {
 
   return (
     <div className={styles.page}>
-      <PageAccents variant="contact" />
-      <div className={styles.cornerNeedle} aria-hidden="true">
-        <NeedleAccent className={styles.cornerNeedleSvg} />
-      </div>
-      <div className={styles.pageContent}>
       <Container>
         <div className={styles.header}>
           <h1 className={styles.title}>Contact</h1>
@@ -177,7 +170,6 @@ function ContactPage() {
           </div>
         </div>
       </Container>
-      </div>
     </div>
   );
 }

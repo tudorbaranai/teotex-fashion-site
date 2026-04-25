@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Container from '../components/ui/Container';
-import PageAccents from '../components/ui/PageAccents';
 import ProductFilter, { type SortOption } from '../components/product/ProductFilter';
 import ProductGrid from '../components/product/ProductGrid';
 import { products } from '../data/products';
@@ -150,8 +149,6 @@ export default function ProductsPage() {
 
   return (
     <section className={styles.page}>
-      <PageAccents variant="products" />
-      <div className={styles.pageContent}>
       <Container>
         <div className={styles.header}>
           <h1 className={styles.title}>Produsele Noastre</h1>
@@ -234,7 +231,6 @@ export default function ProductsPage() {
           </div>
         </div>
       </Container>
-      </div>
     </section>
   );
 }
