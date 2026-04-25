@@ -1,0 +1,12 @@
+.badge {
+  display: inline-block;
+  background-color: var(--color-badge-dark);
+  color: var(--color-bg-white);
+  text-transform: uppercase;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.5px;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  line-height: 1;
+}

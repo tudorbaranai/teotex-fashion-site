@@ -1,0 +1,6 @@
+.needleAccent {
+  width: 80px;
+  height: 80px;
+  color: var(--color-accent-gold);
+  opacity: 0.3;
+}
