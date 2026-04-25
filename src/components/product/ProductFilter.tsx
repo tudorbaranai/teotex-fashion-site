@@ -4,12 +4,12 @@ import styles from './ProductFilter.module.css';
 
 export type SortOption = 'recommended' | 'price-asc' | 'price-desc' | 'newest';
 
-interface SectionPill {
+interface SectionRow {
   label: string;
   value: ProductSection | 'ALL';
 }
 
-const sectionPills: SectionPill[] = [
+const sectionRows: SectionRow[] = [
   { label: 'Toate', value: 'ALL' },
   { label: 'Femei', value: 'FEMEI' },
   { label: 'Barbati', value: 'BARBATI' },
@@ -83,67 +83,79 @@ export default function ProductFilter({
     onPriceApply();
   };
 
-  return (
-    <div className={styles.filterWrapper}>
-      {/* Section pills */}
-      <div className={styles.sectionPills} role="tablist" aria-label="Sectiuni">
-        {sectionPills.map((pill) => (
-          <button
-            key={pill.value}
-            type="button"
-            className={`${styles.pillButton}${activeSection === pill.value ? ` ${styles.active}` : ''}`}
-            onClick={() => onSectionChange(pill.value)}
-          >
-            {pill.label}
-          </button>
-        ))}
-      </div>
+  const handlePriceKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleApply();
+    }
+  };
 
-      {/* Sub-filters row */}
-      <div className={styles.controlsRow}>
-        {availableCategories.length > 0 && (
-          <div className={styles.controlGroup}>
-            <label className={styles.controlLabel}>Categorie</label>
-            <div className={styles.categoryPills}>
+  return (
+    <aside className={styles.sidebar} aria-label="Filtre produse">
+      {/* Section card */}
+      <section className={styles.card}>
+        <h3 className={styles.cardTitle}>Sectiune</h3>
+        <div className={styles.cardDivider} />
+        <ul className={styles.rowList} role="list">
+          {sectionRows.map((row) => {
+            const isActive = activeSection === row.value;
+            return (
+              <li key={row.value}>
+                <button
+                  type="button"
+                  className={`${styles.row}${isActive ? ` ${styles.rowActive}` : ''}`}
+                  onClick={() => onSectionChange(row.value)}
+                  aria-pressed={isActive}
+                >
+                  {row.label}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+
+      {/* Category card */}
+      {availableCategories.length > 0 && (
+        <section className={styles.card}>
+          <h3 className={styles.cardTitle}>Categorie</h3>
+          <div className={styles.cardDivider} />
+          <ul className={styles.rowList} role="list">
+            <li>
               <button
                 type="button"
-                className={`${styles.subPill}${activeCategory === 'ALL' ? ` ${styles.active}` : ''}`}
+                className={`${styles.row}${activeCategory === 'ALL' ? ` ${styles.rowActive}` : ''}`}
                 onClick={() => onCategoryChange('ALL')}
+                aria-pressed={activeCategory === 'ALL'}
               >
                 Toate
               </button>
-              {availableCategories.map((cat) => (
-                <button
-                  key={cat}
-                  type="button"
-                  className={`${styles.subPill}${activeCategory === cat ? ` ${styles.active}` : ''}`}
-                  onClick={() => onCategoryChange(cat)}
-                >
-                  {categoryLabels[cat]}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
+            </li>
+            {availableCategories.map((cat) => {
+              const isActive = activeCategory === cat;
+              return (
+                <li key={cat}>
+                  <button
+                    type="button"
+                    className={`${styles.row}${isActive ? ` ${styles.rowActive}` : ''}`}
+                    onClick={() => onCategoryChange(cat)}
+                    aria-pressed={isActive}
+                  >
+                    {categoryLabels[cat]}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      )}
 
-        <div className={styles.controlGroup}>
-          <label className={styles.controlLabel} htmlFor="sortSelect">Sorteaza</label>
-          <select
-            id="sortSelect"
-            className={styles.select}
-            value={sort}
-            onChange={(e) => onSortChange(e.target.value as SortOption)}
-          >
-            <option value="recommended">Recomandate</option>
-            <option value="price-asc">Pret crescator</option>
-            <option value="price-desc">Pret descrescator</option>
-            <option value="newest">Cele mai noi</option>
-          </select>
-        </div>
-
-        <div className={styles.controlGroup}>
-          <label className={styles.controlLabel}>Pret (RON)</label>
-          <div className={styles.priceInputs}>
+      {/* Price card */}
+      <section className={styles.card}>
+        <h3 className={styles.cardTitle}>Pret</h3>
+        <div className={styles.cardDivider} />
+        <div className={styles.priceRow}>
+          <div className={styles.priceField}>
             <input
               type="number"
               className={styles.priceInput}
@@ -151,10 +163,12 @@ export default function ProductFilter({
               value={localMin}
               min={0}
               onChange={(e) => setLocalMin(e.target.value)}
-              onBlur={handleApply}
+              onKeyDown={handlePriceKeyDown}
               aria-label="Pret minim"
             />
-            <span className={styles.priceDash}>-</span>
+            <span className={styles.priceSuffix}>RON</span>
+          </div>
+          <div className={styles.priceField}>
             <input
               type="number"
               className={styles.priceInput}
@@ -162,38 +176,60 @@ export default function ProductFilter({
               value={localMax}
               min={0}
               onChange={(e) => setLocalMax(e.target.value)}
-              onBlur={handleApply}
+              onKeyDown={handlePriceKeyDown}
               aria-label="Pret maxim"
             />
-            <button
-              type="button"
-              className={styles.applyButton}
-              onClick={handleApply}
-            >
-              Aplica
-            </button>
+            <span className={styles.priceSuffix}>RON</span>
           </div>
         </div>
-
-        <div className={styles.controlGroup}>
-          <label className={styles.checkboxLabel}>
-            <input
-              type="checkbox"
-              checked={inStockOnly}
-              onChange={(e) => onInStockChange(e.target.checked)}
-            />
-            <span>In stoc</span>
-          </label>
-        </div>
-
         <button
           type="button"
-          className={styles.resetButton}
-          onClick={onReset}
+          className={styles.applyButton}
+          onClick={handleApply}
         >
-          Sterge filtrele
+          Aplica
         </button>
-      </div>
-    </div>
+      </section>
+
+      {/* Sort card */}
+      <section className={styles.card}>
+        <h3 className={styles.cardTitle}>Sortare</h3>
+        <div className={styles.cardDivider} />
+        <select
+          className={styles.select}
+          value={sort}
+          onChange={(e) => onSortChange(e.target.value as SortOption)}
+          aria-label="Sorteaza produsele"
+        >
+          <option value="recommended">Recomandate</option>
+          <option value="price-asc">Pret crescator</option>
+          <option value="price-desc">Pret descrescator</option>
+          <option value="newest">Cele mai noi</option>
+        </select>
+      </section>
+
+      {/* Availability card */}
+      <section className={styles.card}>
+        <h3 className={styles.cardTitle}>Disponibilitate</h3>
+        <div className={styles.cardDivider} />
+        <label className={styles.checkboxRow}>
+          <input
+            type="checkbox"
+            className={styles.checkbox}
+            checked={inStockOnly}
+            onChange={(e) => onInStockChange(e.target.checked)}
+          />
+          <span>Doar produse in stoc</span>
+        </label>
+      </section>
+
+      <button
+        type="button"
+        className={styles.resetButton}
+        onClick={onReset}
+      >
+        Sterge toate filtrele
+      </button>
+    </aside>
   );
 }

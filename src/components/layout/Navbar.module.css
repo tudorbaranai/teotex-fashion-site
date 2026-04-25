@@ -84,16 +84,6 @@
   z-index: 110;
 }
 
-.dropdownMenu::before {
-  /* invisible bridge so hover doesn't break between trigger and menu */
-  content: '';
-  position: absolute;
-  top: -12px;
-  left: 0;
-  right: 0;
-  height: 12px;
-}
-
 .dropdownItem {
   display: block;
   padding: var(--space-sm) var(--space-lg);
