@@ -1,13 +1,6 @@
 .page {
   padding-top: var(--space-3xl);
   padding-bottom: var(--space-3xl);
-  position: relative;
-  overflow-x: clip;
-}
-
-.pageContent {
-  position: relative;
-  z-index: 1;
 }
 
 .header {
@@ -45,13 +38,6 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-lg);
-}
-
-.emptyNeedle {
-  width: 130px;
-  height: 130px;
-  opacity: 0.45;
-  pointer-events: none;
 }
 
 .emptyText {

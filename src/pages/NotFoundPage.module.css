@@ -3,17 +3,10 @@
   min-height: 60vh;
   display: flex;
   align-items: center;
-  position: relative;
-  overflow-x: clip;
-}
-
-.pageContent {
-  position: relative;
-  z-index: 1;
-  width: 100%;
 }
 
 .content {
+  width: 100%;
   text-align: center;
 }
 

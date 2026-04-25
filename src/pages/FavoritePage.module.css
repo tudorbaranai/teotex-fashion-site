@@ -1,13 +1,6 @@
 .page {
   padding-top: var(--space-3xl);
   padding-bottom: var(--space-3xl);
-  position: relative;
-  overflow-x: clip;
-}
-
-.pageContent {
-  position: relative;
-  z-index: 1;
 }
 
 .header {

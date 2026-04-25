@@ -164,6 +164,13 @@
   color: var(--color-text-primary);
 }
 
+.brandEmblem {
+  width: 36px;
+  height: 36px;
+  opacity: 0.85;
+  flex-shrink: 0;
+}
+
 /* Hamburger menu button - hidden on desktop */
 .hamburger {
   display: none;
