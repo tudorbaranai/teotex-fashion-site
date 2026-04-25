@@ -36,6 +36,14 @@
   margin-bottom: var(--space-2xl);
 }
 
+.emptyState {
+  text-align: center;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  padding: var(--space-3xl) var(--space-md);
+}
+
 @media (min-width: 768px) {
   .title {
     font-size: var(--font-size-4xl);

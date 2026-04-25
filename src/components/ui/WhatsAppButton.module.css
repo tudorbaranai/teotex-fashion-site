@@ -1,0 +1,31 @@
+.button {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  z-index: 50;
+  text-decoration: none;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.button:hover {
+  transform: scale(1.06);
+  box-shadow: var(--shadow-lg);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-accent-gold);
+  outline-offset: 2px;
+}
+
+.icon {
+  width: 36px;
+  height: 36px;
+}

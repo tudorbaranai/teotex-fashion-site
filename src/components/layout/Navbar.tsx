@@ -1,14 +1,30 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { useCart } from '../../hooks/useCart';
 import { useWishlist } from '../../hooks/useWishlist';
 import styles from './Navbar.module.css';
+
+interface SectionLink {
+  label: string;
+  to: string;
+}
+
+const sectionLinks: SectionLink[] = [
+  { label: 'Toate produsele', to: '/produse' },
+  { label: 'Femei', to: '/produse?sectiune=femei' },
+  { label: 'Barbati', to: '/produse?sectiune=barbati' },
+  { label: 'Casa', to: '/produse?sectiune=casa' },
+  { label: 'Absolvire', to: '/produse?sectiune=absolvire' },
+  { label: 'Nunti', to: '/produse?sectiune=nunti' },
+];
 
 export default function Navbar() {
   const { totalItems } = useCart();
   const { wishlistIds } = useWishlist();
   const wishlistCount = wishlistIds.size;
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
+  const productsRef = useRef<HTMLDivElement | null>(null);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen((prev) => !prev);
@@ -17,6 +33,41 @@ export default function Navbar() {
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
   };
+
+  const toggleProducts = () => {
+    setProductsOpen((prev) => !prev);
+  };
+
+  const closeProducts = () => {
+    setProductsOpen(false);
+  };
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    if (!productsOpen) return;
+    const handleMouseDown = (event: MouseEvent) => {
+      if (
+        productsRef.current &&
+        !productsRef.current.contains(event.target as Node)
+      ) {
+        setProductsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleMouseDown);
+    return () => document.removeEventListener('mousedown', handleMouseDown);
+  }, [productsOpen]);
+
+  // Close dropdown on Escape
+  useEffect(() => {
+    if (!productsOpen) return;
+    const handleKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setProductsOpen(false);
+      }
+    };
+    document.addEventListener('keydown', handleKey);
+    return () => document.removeEventListener('keydown', handleKey);
+  }, [productsOpen]);
 
   return (
     <nav className={styles.navbar}>
@@ -45,12 +96,52 @@ export default function Navbar() {
         </button>
 
         <div className={styles.navLinks}>
-          <NavLink
-            to="/produse"
-            className={({ isActive }) => `${styles.navLink}${isActive ? ` ${styles.active}` : ''}`}
+          <div
+            className={styles.dropdownWrapper}
+            ref={productsRef}
+            onMouseEnter={() => setProductsOpen(true)}
+            onMouseLeave={() => setProductsOpen(false)}
           >
-            Produse
-          </NavLink>
+            <button
+              type="button"
+              className={`${styles.navLink} ${styles.dropdownTrigger}${productsOpen ? ` ${styles.active}` : ''}`}
+              onClick={toggleProducts}
+              aria-haspopup="true"
+              aria-expanded={productsOpen}
+            >
+              Produse
+              <svg
+                className={`${styles.chevron}${productsOpen ? ` ${styles.chevronOpen}` : ''}`}
+                viewBox="0 0 12 12"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M3 4.5 L6 7.5 L9 4.5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+            {productsOpen && (
+              <div className={styles.dropdownMenu} role="menu">
+                {sectionLinks.map((link) => (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    className={styles.dropdownItem}
+                    onClick={closeProducts}
+                    role="menuitem"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
           <NavLink
             to="/despre-noi"
             className={({ isActive }) => `${styles.navLink}${isActive ? ` ${styles.active}` : ''}`}
@@ -106,54 +197,24 @@ export default function Navbar() {
 
           <Link to="/" className={styles.brand}>
             <span className={styles.brandName}>Teotex</span>
-            <svg className={styles.brandIcon} viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M34 5 Q 30 9 26 13 L 11 28 L 7 33"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.4"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <ellipse
-                cx="30.5"
-                cy="8.5"
-                rx="1.4"
-                ry="2.4"
-                transform="rotate(-45 30.5 8.5)"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.4"
-              />
-              <path
-                d="M7 33 L 5 35"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.4"
-                strokeLinecap="round"
-              />
-              <path
-                d="M30.5 8.5 C 36 10, 38 16, 33 21 C 28 26, 22 24, 22 19 C 22 15, 26 14, 28 16"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.4"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
           </Link>
         </div>
       </div>
 
       {/* Mobile dropdown menu */}
       <div className={`${styles.mobileMenu}${mobileMenuOpen ? ` ${styles.open}` : ''}`}>
-        <NavLink
-          to="/produse"
-          className={({ isActive }) => `${styles.mobileLink}${isActive ? ` ${styles.active}` : ''}`}
-          onClick={closeMobileMenu}
-        >
-          Produse
-        </NavLink>
+        <div className={styles.mobileSubheader}>PRODUSE</div>
+        {sectionLinks.map((link) => (
+          <Link
+            key={link.to}
+            to={link.to}
+            className={styles.mobileLink}
+            onClick={closeMobileMenu}
+          >
+            {link.label}
+          </Link>
+        ))}
+        <div className={styles.mobileDivider} />
         <NavLink
           to="/despre-noi"
           className={({ isActive }) => `${styles.mobileLink}${isActive ? ` ${styles.active}` : ''}`}

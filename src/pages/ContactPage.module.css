@@ -133,6 +133,11 @@
   font-size: var(--font-size-sm);
   color: var(--color-text-primary);
   font-weight: var(--font-weight-medium);
+  text-decoration: none;
+}
+
+a.infoValue:hover {
+  color: var(--color-accent-gold);
 }
 
 .mapPlaceholder {

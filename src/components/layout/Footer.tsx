@@ -15,9 +15,11 @@ export default function Footer() {
         <div>
           <h4 className={styles.columnTitle}>Magazin</h4>
           <div className={styles.linkList}>
-            <Link to="/produse" className={styles.footerLink}>Robe</Link>
-            <Link to="/produse" className={styles.footerLink}>Toci</Link>
-            <Link to="/produse" className={styles.footerLink}>Esarfe</Link>
+            <Link to="/produse?sectiune=femei" className={styles.footerLink}>Femei</Link>
+            <Link to="/produse?sectiune=barbati" className={styles.footerLink}>Barbati</Link>
+            <Link to="/produse?sectiune=casa" className={styles.footerLink}>Casa</Link>
+            <Link to="/produse?sectiune=absolvire" className={styles.footerLink}>Absolvire</Link>
+            <Link to="/produse?sectiune=nunti" className={styles.footerLink}>Nunti</Link>
           </div>
         </div>
 
