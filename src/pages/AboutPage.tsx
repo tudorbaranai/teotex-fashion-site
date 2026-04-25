@@ -61,13 +61,12 @@ function AboutPage() {
             <div className={styles.valueCard}>
               <div className={styles.valueIcon}>
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M20 4C12 4 4 10 4 20C4 30 12 36 20 36C28 36 36 30 36 20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/>
-                  <path d="M20 12V20L26 26" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M20 34s-12-7.5-12-16a7 7 0 0 1 12-4.9A7 7 0 0 1 32 18c0 8.5-12 16-12 16z" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-              <h3 className={styles.valueTitle}>Promptitudine</h3>
+              <h3 className={styles.valueTitle}>Pasiune</h3>
               <p className={styles.valueText}>
-                Livrare rapida si suport dedicat pentru a fi alaturi de tine la timp.
+                Peste 10 ani de pasiune si suflet pus in fiecare articol — croit cu grija pentru detaliu.
               </p>
             </div>
           </div>
