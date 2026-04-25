@@ -1,0 +1,17 @@
+.priceDisplay {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+}
+
+.currentPrice {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+.originalPrice {
+  font-size: var(--font-size-sm);
+  color: var(--color-sale-original);
+  text-decoration: line-through;
+}
