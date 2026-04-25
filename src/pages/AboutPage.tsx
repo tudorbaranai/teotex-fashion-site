@@ -1,4 +1,5 @@
 import Container from '../components/ui/Container';
+import NeedleAccent from '../components/ui/NeedleAccent';
 import styles from './AboutPage.module.css';
 
 function AboutPage() {
@@ -8,7 +9,10 @@ function AboutPage() {
         <Container>
           <div className={styles.storyGrid}>
             <div className={styles.storyContent}>
-              <h1 className={styles.sectionTitle}>Povestea Noastra</h1>
+              <div className={styles.titleRow}>
+                <h1 className={styles.sectionTitle}>Povestea Noastra</h1>
+                <NeedleAccent className={styles.titleNeedle} />
+              </div>
               <div className={styles.divider} />
               <p className={styles.text}>
                 TeoTex s-a nascut din pasiunea pentru moda si dorinta de a oferi absolventilor romani

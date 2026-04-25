@@ -40,6 +40,13 @@
   gap: var(--space-lg);
 }
 
+.emptyNeedle {
+  width: 130px;
+  height: 130px;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
 .emptyText {
   font-family: var(--font-family-heading);
   font-size: var(--font-size-xl);

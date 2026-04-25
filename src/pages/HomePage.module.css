@@ -54,6 +54,35 @@
   right: var(--space-xl);
 }
 
+.needleTopLeft {
+  position: absolute;
+  top: var(--space-xl);
+  left: var(--space-xl);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.needleTopLeftSvg {
+  width: 90px;
+  height: 90px;
+  opacity: 0.3;
+  transform: scaleX(-1);
+}
+
+.heroDivider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-xl) 0;
+  pointer-events: none;
+}
+
+.heroDividerSvg {
+  width: 60px;
+  height: 60px;
+  opacity: 0.25;
+}
+
 @media (max-width: 768px) {
   .heroTitle {
     font-size: var(--font-size-3xl);
@@ -70,5 +99,15 @@
   .needleWrapper {
     bottom: var(--space-md);
     right: var(--space-md);
+  }
+
+  .needleTopLeft {
+    top: var(--space-md);
+    left: var(--space-md);
+  }
+
+  .needleTopLeftSvg {
+    width: 60px;
+    height: 60px;
   }
 }

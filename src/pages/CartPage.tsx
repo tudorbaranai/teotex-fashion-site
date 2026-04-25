@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Container from '../components/ui/Container';
+import NeedleAccent from '../components/ui/NeedleAccent';
 import { useCart } from '../hooks/useCart';
 import { products } from '../data/products';
 import type { Product } from '../types/product';
@@ -53,6 +54,7 @@ export default function CartPage() {
 
         {resolvedItems.length === 0 ? (
           <div className={styles.emptyState}>
+            <NeedleAccent className={styles.emptyNeedle} />
             <p className={styles.emptyText}>Cosul tau este gol</p>
             <Link to="/produse" className={styles.primaryButton}>
               Continua cumparaturile

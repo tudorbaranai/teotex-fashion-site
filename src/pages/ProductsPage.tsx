@@ -47,6 +47,7 @@ export default function ProductsPage() {
   const [inStockOnly, setInStockOnly] = useState(false);
   const [priceMin, setPriceMin] = useState('');
   const [priceMax, setPriceMax] = useState('');
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   // Sync state from URL whenever the URL section changes (back/forward, footer link, etc.)
   useEffect(() => {
@@ -132,6 +133,20 @@ export default function ProductsPage() {
     handleSectionChange('ALL');
   };
 
+  // Count active filters for the mobile toggle label
+  const activeFilterCount =
+    (activeSection !== 'ALL' ? 1 : 0) +
+    (activeCategory !== 'ALL' ? 1 : 0) +
+    (priceMin ? 1 : 0) +
+    (priceMax ? 1 : 0) +
+    (inStockOnly ? 1 : 0) +
+    (sort !== 'recommended' ? 1 : 0);
+
+  const resultLabel =
+    filteredProducts.length === 1
+      ? '1 produs'
+      : `${filteredProducts.length} produse`;
+
   return (
     <section className={styles.page}>
       <Container>
@@ -140,34 +155,81 @@ export default function ProductsPage() {
           <hr className={styles.accentLine} />
           <p className={styles.subtitle}>{SECTION_SUBTITLES[activeSection]}</p>
         </div>
-        <div className={styles.filterSection}>
-          <ProductFilter
-            activeSection={activeSection}
-            onSectionChange={handleSectionChange}
-            availableCategories={availableCategories}
-            activeCategory={activeCategory}
-            onCategoryChange={setActiveCategory}
-            sort={sort}
-            onSortChange={setSort}
-            inStockOnly={inStockOnly}
-            onInStockChange={setInStockOnly}
-            priceMin={priceMin}
-            priceMax={priceMax}
-            onPriceMinChange={setPriceMin}
-            onPriceMaxChange={setPriceMax}
-            onPriceApply={() => {
-              /* values already pushed by ProductFilter via onPriceMinChange/Max */
-            }}
-            onReset={handleReset}
-          />
+
+        <div className={styles.layout}>
+          {/* Mobile toggle - only visible on mobile */}
+          <button
+            type="button"
+            className={styles.mobileFilterToggle}
+            onClick={() => setMobileFiltersOpen((prev) => !prev)}
+            aria-expanded={mobileFiltersOpen}
+            aria-controls="filter-sidebar"
+          >
+            <span>Filtre{activeFilterCount > 0 ? ` (${activeFilterCount})` : ''}</span>
+            <svg
+              className={`${styles.toggleChevron}${mobileFiltersOpen ? ` ${styles.toggleChevronOpen}` : ''}`}
+              viewBox="0 0 12 12"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M3 4.5 L6 7.5 L9 4.5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+
+          <div
+            id="filter-sidebar"
+            className={`${styles.sidebarWrapper}${mobileFiltersOpen ? ` ${styles.sidebarWrapperOpen}` : ''}`}
+          >
+            <ProductFilter
+              activeSection={activeSection}
+              onSectionChange={handleSectionChange}
+              availableCategories={availableCategories}
+              activeCategory={activeCategory}
+              onCategoryChange={setActiveCategory}
+              sort={sort}
+              onSortChange={setSort}
+              inStockOnly={inStockOnly}
+              onInStockChange={setInStockOnly}
+              priceMin={priceMin}
+              priceMax={priceMax}
+              onPriceMinChange={setPriceMin}
+              onPriceMaxChange={setPriceMax}
+              onPriceApply={() => {
+                /* values already pushed by ProductFilter via onPriceMinChange/Max */
+              }}
+              onReset={handleReset}
+            />
+          </div>
+
+          <div className={styles.results}>
+            <div className={styles.resultsHeader}>
+              <span className={styles.resultCount}>{resultLabel}</span>
+            </div>
+            {filteredProducts.length === 0 ? (
+              <div className={styles.emptyState}>
+                <p className={styles.emptyText}>
+                  Niciun produs nu corespunde filtrelor selectate. Incearca sa elimini cateva filtre.
+                </p>
+                <button
+                  type="button"
+                  className={styles.emptyResetButton}
+                  onClick={handleReset}
+                >
+                  Sterge filtrele
+                </button>
+              </div>
+            ) : (
+              <ProductGrid products={filteredProducts} />
+            )}
+          </div>
         </div>
-        {filteredProducts.length === 0 ? (
-          <p className={styles.emptyState}>
-            Nu am gasit produse care sa corespunda filtrelor selectate.
-          </p>
-        ) : (
-          <ProductGrid products={filteredProducts} />
-        )}
       </Container>
     </section>
   );

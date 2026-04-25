@@ -8,6 +8,9 @@ function HomePage() {
   return (
     <div className={styles.page}>
       <section className={styles.hero}>
+        <div className={styles.needleTopLeft}>
+          <NeedleAccent className={styles.needleTopLeftSvg} />
+        </div>
         <Container>
           <div className={styles.heroContent}>
             <h1 className={styles.heroTitle}>Celebreaza Absolvirea cu Stil</h1>
@@ -23,6 +26,10 @@ function HomePage() {
           <NeedleAccent />
         </div>
       </section>
+
+      <div className={styles.heroDivider} aria-hidden="true">
+        <NeedleAccent className={styles.heroDividerSvg} />
+      </div>
 
       <FeaturedProducts />
     </div>

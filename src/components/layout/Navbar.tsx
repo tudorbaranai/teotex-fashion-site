@@ -97,10 +97,8 @@ export default function Navbar() {
 
         <div className={styles.navLinks}>
           <div
-            className={styles.dropdownWrapper}
+            className={`${styles.dropdownWrapper}${productsOpen ? ` ${styles.dropdownOpen}` : ''}`}
             ref={productsRef}
-            onMouseEnter={() => setProductsOpen(true)}
-            onMouseLeave={() => setProductsOpen(false)}
           >
             <button
               type="button"

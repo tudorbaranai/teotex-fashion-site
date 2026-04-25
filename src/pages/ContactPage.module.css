@@ -1,5 +1,34 @@
 .page {
   padding: var(--space-3xl) 0 var(--space-4xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.cornerNeedle {
+  position: absolute;
+  bottom: var(--space-xl);
+  left: var(--space-xl);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cornerNeedleSvg {
+  width: 110px;
+  height: 110px;
+  opacity: 0.3;
+  transform: scaleX(-1);
+}
+
+@media (max-width: 768px) {
+  .cornerNeedle {
+    bottom: var(--space-md);
+    left: var(--space-md);
+  }
+
+  .cornerNeedleSvg {
+    width: 70px;
+    height: 70px;
+  }
 }
 
 .header {
