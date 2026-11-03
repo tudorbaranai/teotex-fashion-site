@@ -1,9 +1,10 @@
+import { WHATSAPP_NUMBER } from '../../config/contact';
 import styles from './WhatsAppButton.module.css';
 
 export default function WhatsAppButton() {
   return (
     <a
-      href="https://wa.me/40740486771"
+      href={`https://wa.me/${WHATSAPP_NUMBER}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contacteaza-ne pe WhatsApp"
