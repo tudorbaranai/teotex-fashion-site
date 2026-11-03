@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Container from '../components/ui/Container';
 import Button from '../components/ui/Button';
+import { WHATSAPP_NUMBER, PHONE_NUMBER, PHONE_DISPLAY, PHONE_DISPLAY_INTL } from '../config/contact';
 import styles from './ContactPage.module.css';
 
 function ContactPage() {
@@ -116,7 +117,7 @@ function ContactPage() {
                 </svg>
                 <div>
                   <span className={styles.infoLabel}>Telefon</span>
-                  <a href="tel:+40700000000" className={styles.infoValue}>0700 000 000</a>
+                  <a href={`tel:${PHONE_NUMBER}`} className={styles.infoValue}>{PHONE_DISPLAY}</a>
                 </div>
               </div>
 
@@ -130,12 +131,12 @@ function ContactPage() {
                 <div>
                   <span className={styles.infoLabel}>WhatsApp</span>
                   <a
-                    href="https://wa.me/40700000000"
+                    href={`https://wa.me/${WHATSAPP_NUMBER}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={styles.infoValue}
                   >
-                    +40 700 000 000
+                    {PHONE_DISPLAY_INTL}
                   </a>
                 </div>
               </div>

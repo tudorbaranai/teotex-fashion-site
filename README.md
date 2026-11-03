@@ -18,7 +18,7 @@ Site de prezentare și e-commerce pentru **TeoTex**, un atelier românesc cu pes
 - **Coș de cumpărături** la `/#/cos` — listă produse cu controale de cantitate (`+`/`−`), total pe rând, ștergere item, sumar comandă lipicios cu Total + două CTA-uri (WhatsApp cu mesaj pre-completat conținând lista + cantități + total, și `tel:` pentru apel direct), plus stare goală cu CTA. Comenzile se finalizează exclusiv prin WhatsApp / telefon — nu există plată online sau livrare automată.
 - **Listă de favorite** la `/#/favorite` — grid de produse, sincronizat cu inima din cardurile de produs.
 - **Iconițe coș + favorite în navbar** cu badge-uri care afișează numărul de produse, identice ca stil.
-- **Buton flotant WhatsApp** vizibil pe orice pagină, conectat la numărul brand-ului (`+40 700 000 000`).
+- **Buton flotant WhatsApp** vizibil pe orice pagină, conectat la numărul magazinului.
 - **Harta Google Maps** integrată pe pagina Contact (iframe cu `output=embed`, fără API key) — caută "TeoTex Fashion SRL, Stroiești".
 - **Scroll la top automat** la orice navigare, inclusiv click pe Link către pagina curentă (depinde de `location.key`), implementat în `src/components/ui/ScrollToTop.tsx`.
 - **Navbar sticky compact** (`--navbar-height: 60px`) cu shadow soft, care plutește deasupra paginii.
@@ -103,8 +103,8 @@ Pentru a vizualiza site-ul fără un server web, se deschide `dist/index.html` d
 - **Produse:** `src/data/products.ts`. Fiecare produs are `section` (`FEMEI` / `BARBATI` / `CASA` / `ABSOLVIRE` / `NUNTI`) și `category` (sub-tipul). Tipurile sunt definite în `src/types/product.ts`.
 - **Imagini produse:** se pun în `public/assets/images/` și se referențiază relativ ca `assets/images/<nume-fisier>` în `products.ts`.
 - **Culori, tipografie, spațieri:** variabilele de design sunt centralizate în `src/styles/tokens.css`.
-- **Date de contact:** `src/pages/ContactPage.tsx` (email, telefon, adresă, program, link WhatsApp, query pentru harta Google Maps).
-- **Număr de telefon / WhatsApp:** numărul brand-ului (`40700000000`) e folosit în trei locuri — `src/components/ui/WhatsAppButton.tsx` (buton flotant), `src/pages/ContactPage.tsx` (telefon + WhatsApp în card-ul de info) și `src/pages/CartPage.tsx` (constantele `WHATSAPP_NUMBER` / `PHONE_NUMBER` / `PHONE_DISPLAY`). Dacă se schimbă, se actualizează în toate trei.
+- **Date de contact:** `src/pages/ContactPage.tsx` (email, adresă, program, query pentru harta Google Maps).
+- **Număr de telefon / WhatsApp:** se setează într-un singur loc, `src/config/contact.ts`, și e folosit de butonul flotant, pagina Contact și coș. Acum conține un număr de exemplu; trebuie înlocuit cu cel real înainte de lansare.
 - **Texte despre brand:** `src/pages/AboutPage.tsx`.
 
 ## Limitări curente (de avut în vedere)
