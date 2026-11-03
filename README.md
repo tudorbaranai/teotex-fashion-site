@@ -2,6 +2,10 @@
 
 Site de prezentare și e-commerce pentru **TeoTex**, un atelier românesc cu peste 10 ani de experiență în confecționarea și vânzarea de articole textile. Catalogul acoperă cinci secțiuni mari: îmbrăcăminte pentru femei, îmbrăcăminte pentru bărbați, textile pentru casă, articole de absolvire (robe, toci, eșarfe) și ținute pentru nuntă (rochii de mireasă, costume de mire). Interfața este integral în limba română, iar prețurile sunt afișate în RON (lei).
 
+![Pagina Produse: filtre pe secțiune și categorie în stânga, carduri de produs în dreapta](docs/produse.png)
+
+*Pozele de produs sunt încă imagini de test.*
+
 ## Stack tehnic
 
 - **React 19** + **TypeScript** (strict)
