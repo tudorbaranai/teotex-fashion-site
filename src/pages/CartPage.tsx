@@ -3,13 +3,10 @@ import Container from '../components/ui/Container';
 import { useCart } from '../hooks/useCart';
 import { products } from '../data/products';
 import type { Product } from '../types/product';
+import { WHATSAPP_NUMBER, PHONE_NUMBER, PHONE_DISPLAY } from '../config/contact';
 import styles from './CartPage.module.css';
 
 const formatPrice = (n: number) => `${n.toFixed(2)} RON`;
-
-const WHATSAPP_NUMBER = '40740486771';
-const PHONE_NUMBER = '+40740486771';
-const PHONE_DISPLAY = '0740 486 771';
 
 interface ResolvedItem {
   product: Product;
