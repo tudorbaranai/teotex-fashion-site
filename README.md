@@ -107,8 +107,8 @@ Pentru a vizualiza site-ul fără un server web, se deschide `dist/index.html` d
 - **Produse:** `src/data/products.ts`. Fiecare produs are `section` (`FEMEI` / `BARBATI` / `CASA` / `ABSOLVIRE` / `NUNTI`) și `category` (sub-tipul). Tipurile sunt definite în `src/types/product.ts`.
 - **Imagini produse:** se pun în `public/assets/images/` și se referențiază relativ ca `assets/images/<nume-fisier>` în `products.ts`.
 - **Culori, tipografie, spațieri:** variabilele de design sunt centralizate în `src/styles/tokens.css`.
-- **Date de contact:** `src/pages/ContactPage.tsx` (email, adresă, program, query pentru harta Google Maps).
-- **Număr de telefon / WhatsApp:** se setează într-un singur loc, `src/config/contact.ts`, și e folosit de butonul flotant, pagina Contact și coș. Acum conține un număr de exemplu; trebuie înlocuit cu cel real înainte de lansare.
+- **Date de contact:** `src/pages/ContactPage.tsx` (adresă, program, query pentru harta Google Maps).
+- **Telefon, WhatsApp și email:** nu stau în cod. Copiază `.env.example` ca `.env` și pune datele reale acolo; `.env` e în `.gitignore`, deci nu ajunge pe GitHub. Fără `.env`, site-ul arată valorile de exemplu din `src/config/contact.ts`.
 - **Texte despre brand:** `src/pages/AboutPage.tsx`.
 
 ## Limitări curente (de avut în vedere)
@@ -121,4 +121,4 @@ Pentru a vizualiza site-ul fără un server web, se deschide `dist/index.html` d
 
 ## Licență
 
-Cod proprietar. Toate drepturile rezervate © TeoTex.
+Cod proprietar. Toate drepturile rezervate © TeoTex. Vezi [LICENSE](LICENSE).
