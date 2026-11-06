@@ -35,7 +35,7 @@ Catalogul are cinci secțiuni: îmbrăcăminte pentru femei și bărbați, texti
 ## Rute
 
 | URL (hash) | Pagină |
-|---|---|
+| --- | --- |
 | `/` | Pagina principală |
 | `/produse` | Toate produsele |
 | `/produse?sectiune=femei` | Produsele din secțiunea Femei |
@@ -52,7 +52,7 @@ Orice altă rută trimite la pagina 404.
 
 ## Structura proiectului
 
-```
+```text
 src/
 ├── App.tsx                       # rutare top-level (HashRouter, ScrollToTop, providers)
 ├── main.tsx                      # entry point
@@ -83,7 +83,7 @@ Vite pornește dev server-ul (de obicei pe `http://localhost:5173`) cu hot modul
 ### Comenzi disponibile
 
 | Comandă | Ce face |
-|---|---|
+| --- | --- |
 | `npm run dev` | Pornește dev server-ul Vite cu HMR |
 | `npm run build` | Rulează `tsc -b` și apoi build de producție în `dist/` (un singur `index.html` self-contained) |
 | `npm run preview` | Servește local build-ul din `dist/` pentru verificare |
