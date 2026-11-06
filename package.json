@@ -2,6 +2,12 @@
   "name": "teotex",
   "private": true,
   "version": "0.0.0",
+  "description": "Site de prezentare și magazin online pentru TeoTex, un atelier românesc de articole textile",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tudorbaranai/teotex-fashion-site.git"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
