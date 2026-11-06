@@ -1,6 +1,8 @@
 # TeoTex — Articole textile pentru orice ocazie
 
-Site de prezentare și e-commerce pentru **TeoTex**, un atelier românesc cu peste 10 ani de experiență în confecționarea și vânzarea de articole textile. Catalogul acoperă cinci secțiuni mari: îmbrăcăminte pentru femei, îmbrăcăminte pentru bărbați, textile pentru casă, articole de absolvire (robe, toci, eșarfe) și ținute pentru nuntă (rochii de mireasă, costume de mire). Interfața este integral în limba română, iar prețurile sunt afișate în RON (lei).
+Site de prezentare și magazin online pentru **TeoTex**, un atelier românesc de articole textile cu peste 10 ani de experiență.
+
+Catalogul are cinci secțiuni: îmbrăcăminte pentru femei și bărbați, textile pentru casă, articole de absolvire (robe, toci, eșarfe) și ținute de nuntă. Totul e în română, cu prețuri în lei, iar comenzile se trimit pe WhatsApp sau la telefon.
 
 ![Pagina Produse: filtre pe secțiune și categorie în stânga, carduri de produs în dreapta](docs/produse.png)
 
@@ -33,7 +35,7 @@ Site de prezentare și e-commerce pentru **TeoTex**, un atelier românesc cu pes
 ## Rute
 
 | URL (hash) | Pagină |
-|---|---|
+| --- | --- |
 | `/` | Pagina principală |
 | `/produse` | Toate produsele |
 | `/produse?sectiune=femei` | Produsele din secțiunea Femei |
@@ -50,7 +52,7 @@ Orice altă rută trimite la pagina 404.
 
 ## Structura proiectului
 
-```
+```text
 src/
 ├── App.tsx                       # rutare top-level (HashRouter, ScrollToTop, providers)
 ├── main.tsx                      # entry point
@@ -81,7 +83,7 @@ Vite pornește dev server-ul (de obicei pe `http://localhost:5173`) cu hot modul
 ### Comenzi disponibile
 
 | Comandă | Ce face |
-|---|---|
+| --- | --- |
 | `npm run dev` | Pornește dev server-ul Vite cu HMR |
 | `npm run build` | Rulează `tsc -b` și apoi build de producție în `dist/` (un singur `index.html` self-contained) |
 | `npm run preview` | Servește local build-ul din `dist/` pentru verificare |
@@ -107,8 +109,8 @@ Pentru a vizualiza site-ul fără un server web, se deschide `dist/index.html` d
 - **Produse:** `src/data/products.ts`. Fiecare produs are `section` (`FEMEI` / `BARBATI` / `CASA` / `ABSOLVIRE` / `NUNTI`) și `category` (sub-tipul). Tipurile sunt definite în `src/types/product.ts`.
 - **Imagini produse:** se pun în `public/assets/images/` și se referențiază relativ ca `assets/images/<nume-fisier>` în `products.ts`.
 - **Culori, tipografie, spațieri:** variabilele de design sunt centralizate în `src/styles/tokens.css`.
-- **Date de contact:** `src/pages/ContactPage.tsx` (email, adresă, program, query pentru harta Google Maps).
-- **Număr de telefon / WhatsApp:** se setează într-un singur loc, `src/config/contact.ts`, și e folosit de butonul flotant, pagina Contact și coș. Acum conține un număr de exemplu; trebuie înlocuit cu cel real înainte de lansare.
+- **Date de contact:** `src/pages/ContactPage.tsx` (adresă, program, query pentru harta Google Maps).
+- **Telefon, WhatsApp și email:** nu stau în cod. Copiază `.env.example` ca `.env` și pune datele reale acolo; `.env` e în `.gitignore`, deci nu ajunge pe GitHub. Fără `.env`, site-ul arată valorile de exemplu din `src/config/contact.ts`.
 - **Texte despre brand:** `src/pages/AboutPage.tsx`.
 
 ## Limitări curente (de avut în vedere)
@@ -121,4 +123,4 @@ Pentru a vizualiza site-ul fără un server web, se deschide `dist/index.html` d
 
 ## Licență
 
-Cod proprietar. Toate drepturile rezervate © TeoTex.
+Cod proprietar. Toate drepturile rezervate © TeoTex. Vezi [LICENSE](LICENSE).

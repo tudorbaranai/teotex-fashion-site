@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Container from '../components/ui/Container';
 import Button from '../components/ui/Button';
-import { WHATSAPP_NUMBER, PHONE_NUMBER, PHONE_DISPLAY, PHONE_DISPLAY_INTL } from '../config/contact';
+import { WHATSAPP_NUMBER, PHONE_NUMBER, PHONE_DISPLAY, PHONE_DISPLAY_INTL, CONTACT_EMAIL } from '../config/contact';
 import styles from './ContactPage.module.css';
 
 function ContactPage() {
@@ -107,7 +107,7 @@ function ContactPage() {
                 </svg>
                 <div>
                   <span className={styles.infoLabel}>Email</span>
-                  <span className={styles.infoValue}>contact@example.com</span>
+                  <a href={`mailto:${CONTACT_EMAIL}`} className={styles.infoValue}>{CONTACT_EMAIL}</a>
                 </div>
               </div>
 
